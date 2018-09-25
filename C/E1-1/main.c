@@ -23,7 +23,7 @@
 
 /**
  * Prints the passed number to the standard output or replaces it with
- *  - "Fizz" if the number is divisible by 3,
+ *  - "Fizz" if the number is divisible by 3
  *  - "Buzz" if the number is divisible by 5
  *  - "FizzBuzz" if both
  * @param number number to replace or print
