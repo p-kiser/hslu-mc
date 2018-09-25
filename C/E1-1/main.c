@@ -22,11 +22,11 @@
 #define BUZZ "Buzz"
 
 /**
- * Prints the passed number to the standard output or replaces it with
+ * Prints the passed integer to the standard output or replaces it with
  *  - "Fizz" if the number is divisible by 3
  *  - "Buzz" if the number is divisible by 5
  *  - "FizzBuzz" if both
- * @param number number to replace or print
+ * @param number integer to replace or print
  */
 
 void fizz(int number);
