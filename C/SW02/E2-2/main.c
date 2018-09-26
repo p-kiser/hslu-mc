@@ -23,13 +23,10 @@
  * TODO
  */
 #define ASCII 48
-#define TRUE 1
-#define FALSE 0
-
 /**
  * Gibt übergebene Integerzahl in dezimaler Darstellung als Zeichenkette zurück.
  */
-char* itoa(int i);
+//const char * itoa(int i);
 
 /**
  * Kehrt einen String um
@@ -53,7 +50,7 @@ int isNegative(int i);
 
 int main(int argc, char **argv) {
    
-   int n;
+   int n = -453;
    printf("Enter a Number: ");
    scanf("%d", &n);
 
@@ -63,9 +60,10 @@ int main(int argc, char **argv) {
    */
 
    printf("\n%s\n", itoa(n));
+   return 0;
 }
 
-char* itoa(int n) {
+const char * itoa(int n) {
     
     int length =  getDigits(n) + 1 ;
     char * s = malloc(sizeof(char) * length + isNegative(n));
