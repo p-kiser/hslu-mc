@@ -12,8 +12,21 @@
 /**
  * Gibt "Hello World" aus
  */
+#define HELLO_WORLD "Hello World!\n"
 
+/**
+ * prints "Hello World!"
+ */
+void sayHello();
+
+/**
+ * main function
+ */
 int main (int argc, char **argv) {
-    printf("Hello World!\n");
+    sayHello();
     return 0;
+}
+
+void sayHello() {
+    printf(HELLO_WORLD);
 }
