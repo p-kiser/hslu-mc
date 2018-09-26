@@ -23,8 +23,6 @@
  * TODO
  */
 #define ASCII 48
-#define TRUE 1
-#define FALSE 0
 
 /**
  * Gibt übergebene Integerzahl in dezimaler Darstellung als Zeichenkette zurück.
