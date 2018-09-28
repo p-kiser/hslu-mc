@@ -16,7 +16,32 @@
 /**
  * main function
  */
+
+
+enum superbool {True = 1, False = 0, Maybe = -1};
+
+
+void gibString(enum superbool b);
+
 int main (int argc, char **argv) {
-    // TODO
+    
+    enum superbool b;
+    b = Maybe;
+    gibString(b);
     return 0;
+}
+
+void gibString (enum superbool b) {
+    switch (b) {
+        case True:
+            printf("True\n");
+            break;
+        case False:
+            printf("False\n");
+            break;
+            break;
+        case Maybe:
+        default:
+            printf("Maybe\n");
+    }
 }
