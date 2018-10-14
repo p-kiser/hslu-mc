@@ -1,0 +1,31 @@
+#include "ampel.h"
+#include <stdio.h>
+#include <unistd.h>
+
+static state s = RED;
+
+state getState() {
+    return s;
+}
+
+void nextState() {
+    s == YELLOW ? s = RED : s++;
+    sleep(1);
+}
+
+void printState() {
+    switch (s) {
+        case RED:
+            printf("Red\n");
+            break;
+        case GREEN:
+            printf("Green\n");
+            break;
+        case GREEN_BLINKING:
+            printf("Green blinking\n");
+            break;
+        case YELLOW:
+            printf("Yellow\n");
+            break;
+    }
+}

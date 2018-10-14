@@ -13,6 +13,7 @@
 /**
  * main function
  */
-int main (int argc, char **argv) {
+int main () {
+    //TODO
     return 0;
 }
