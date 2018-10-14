@@ -16,6 +16,8 @@ Mikrocode (mikrocode.mcs) modifiziert und das entsprechende Programm geschrieben
     - Falls Divisor = 0, Inhalt von 16h = FFh
     - Falls Divisor  0, Inhalt von 16h = 00h 
 
+## Lösung
+
 1. In der Control-Unit zwei Befehle auf DIV und MOD umstellen und umbenennen.
 2. Arbeitsspeicher:
 
@@ -32,9 +34,10 @@ Mikrocode (mikrocode.mcs) modifiziert und das entsprechende Programm geschrieben
 - 0A: `LDA $12` # Dividend laden
 - 0B: `MOD $13` # Modulo
 - 0C: `STA $15` # Resultat speichern
-- 0D: `JMP $00`   
+- 0D: `JMP $00`
 
 ...
+
 - 12: `14.` # Dividend
 - 13: `3.`  # Divisor
 
