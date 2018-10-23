@@ -1,12 +1,6 @@
-CC=gcc
-CFLAGS=-std=c90
-
 ampel: main.o ampel.o
-	$(CC) $(CFLAGS) main.o ampel.o -o ampel
-
-%.o: %.c
-	$(CC) -c $(CFLAGS) -o $@ $<
-
+	gcc  main.o ampel.o -o ampel
+	
 clean:
 	rm -f *.o
 	rm -f ampel	

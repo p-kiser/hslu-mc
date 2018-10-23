@@ -6,9 +6,9 @@
  * @date 10.04.2018
  */
 
+
 #include "ampel.h"
 #include <stdio.h>
-#include <unistd.h>
 
 static state s = RED;
 
@@ -18,7 +18,6 @@ state getState() {
 
 void nextState() {
     s == YELLOW ? s = RED : s++;
-    sleep(1);
 }
 
 void printState() {

@@ -7,12 +7,13 @@
  */
 
 #include "ampel.h"
+#include <unistd.h>
 
 int main() {
 
-    state s;
     for (;;) {
         printState();
         nextState();
+        sleep(1);
     }
 }
