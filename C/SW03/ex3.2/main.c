@@ -9,11 +9,27 @@
  * @version 1.0
  */
 #include <stdio.h>
+#include <stdlib.h>
 
+
+#define SIZE 4
 /**
- * main function
+ * Print every Byte in a float as a hex number.
  */
+typedef union{
+    float f;
+    char b[SIZE];
+} number_t;
+
 int main () {
-    //TODO
+    int i;
+    number_t number;
+    number.f = 3.1415;
+
+    printf("Float: %f\n", number.f);
+
+    for(i = 0; i < SIZE; i++) {
+            printf("Byte %d: 0x%2x\n", i, number.b[i]);
+    }
     return 0;
 }
