@@ -5,7 +5,7 @@
  * Beispielprogramm
  * 
  * @author Pascal Kiser
- * @date 25.06.2018
+ * @date 25.09.2018
  * @version 1.0
  */
 #include <stdio.h>

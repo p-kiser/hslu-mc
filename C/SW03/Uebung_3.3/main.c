@@ -8,23 +8,26 @@
  * @version 1.0
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 
 #define MAXWORD 100
 #define BUFSIZE 100
 
-struct tnode{
+typedef struct tnode *NodePtr_t;
+typedef struct tnode {
     char *word;
     int count;
-    struct tnode *left;
-    struct tnode *right;
-};
+    NodePtr_t left;
+    NodePtr_t right;
+} Node_t;
+
 /* siehe auch Buch K&R S. 77 */
 char buf[BUFSIZE];    /* Buffer fuer ungetch() */
-int bufp = 0;     /* naechste freie Position für buf */
+int bufp = 0;     /* nächste freie Position für buf */
 
-int getch(void){   /* naechstes Zeichen holen */
+int getch(void){   /* nächstes Zeichen holen */
     return (bufp > 0 ? buf[--bufp] : getchar());
 }
 
@@ -56,13 +59,13 @@ int getword(char *word, int lim){
     return word[0];
 }
 
-struct tnode *addtree(struct tnode *, char *);
-void treeprint(struct tnode *);
-tnode *newnode(char *);
+NodePtr_t addtree(NodePtr_t, char *);
+void treeprint(NodePtr_t);
+NodePtr_t newnode(char *);
 
-/* Haeufigkeit von Woerter zaehlen */
+/* Häufigkeit von Wörter zählen */
 main(){
-    struct tnode *root;
+    NodePtr_t root;
     char word[MAXWORD];
     
     root = NULL;
@@ -78,18 +81,18 @@ main(){
     return(0);
 } 
 
-struct tnode *addtree(struct tnode *root, char * word) {
-    struct tnode *node;
+NodePtr_t addtree(NodePtr_t root, char * word) {
+    NodePtr_t node;
 
     if (root == NULL) {
         return newnode(word);
     }
     //TODO
     printf("treeprint: NOT IMPLEMENTED YET\n");
-    return n;   
+    return node;   
 }
 
-void treeprint(struct tnode * node) {
+void treeprint(NodePtr_t node) {
     if (node != NULL) {
         treeprint(node->left);
         treeprint(node->right);
@@ -97,12 +100,12 @@ void treeprint(struct tnode * node) {
     }
 }
 
-tnode *newnode(char *word) {
-    tnode *node;
-    node = (tnode*)malloc(sizeof(tnode));
+NodePtr_t newnode(char *word) {
+    NodePtr_t node;
+    node = (NodePtr_t)malloc(sizeof(Node_t));
 
-    node->word = malloc(sizeof(char) * strlen(word+1));
-    strcopy(node->word, word;)
+    node->word = (char*)malloc(sizeof(char) * strlen(word+1));
+    strcpy(node->word, word);
     node->count = 1;
     node->left = NULL;
     node->right = NULL;
