@@ -6,7 +6,7 @@
 
 Der *Präprozessor* ersetzt und ergänzt Programmcode:
 
-- Ersetzen von Trigraph-Zeichen
+- Ersetzen von _Trigraph_-Zeichen
 - Zusammenführen von Zeilen, die durch `\` aufgeteilt wurden
 - Kommentare entfernen
 - Präprozessor-Direktiven ausführen und Makros expandieren
@@ -22,7 +22,8 @@ Der *Compiler* übersetzt C-Dateien in Objekt-Dateien
 
 Der *Linker* erstellt ausführbare Datei
 
-- kombiniert Objektcode und Bibliotheken zu einem ausführbaren Programm
+- kombiniert Objektcode und Bibliotheken
+- erstellt ein ausführbares Programm
 
 ## Datentypen
 
@@ -77,7 +78,7 @@ Einige Sonderzeichen:
 |`long double` | min. 8 |
 
     
-**Modifizierer**
+#### Modifizierer
     
 Konstanten sind standardmässig vom Typ `int` (Ganzzahlen) oder `double` (Gleitkommazahlen). Dieses Verhalten kann mit _Modifizierern_ beeinflusst werden:
 * `L` für `long` (Ganzzahlen)
@@ -89,7 +90,7 @@ Konstanten sind standardmässig vom Typ `int` (Ganzzahlen) oder `double` (Gleitk
 float pi = 3.1415F
 ```
 
-**Typumwandlung** (Typecasting):
+#### Typumwandlung (Typecasting)
     
 ```c
 int i;
@@ -99,12 +100,24 @@ i = (int)f;
 
 ### Nicht-elementare Datentypen
 
-**Strukturen (`struct`)**
+#### Strukturen (`struct`)
     
 >TODO
 
-**Aufzählungen (`enum`)**
-    
+```c
+// 
+struct Point {
+    int x;
+    int y;
+}
+// 
+Struct Point p = {1,2};
+// Zugriff
+p.x = 3;
+```
+
+#### Aufzählungen (`enum`)
+ 
 Folgen von ganzzahligen Werten, erlauben dem Compiler eine Typenüberprüfung.
     
 ```c
@@ -116,16 +129,16 @@ UNDEFINED = 0xFF
 };
 enum States s = IDLE; // Variablendeklaration
 ```
-    
-**Union**
+
+#### Union
 
 >TODO
 
-**Bitfelder**
+#### Bitfelder
     
 >TODO
     
-**Zeiger**
+#### Zeiger
 
 Zeiger (Pointer) sind Variablen, die Adressen enthalten.
 
@@ -141,13 +154,14 @@ p = &c;   // Zuweisung der Adresse von c (& : Adress-Operator)
 Jeder Zeiger zeigt auf einen festgelegten Datentyp. Zeigt ein Pointer `pa` auf ein Element eines Vektors, dann zeigt `pa+1` per Definition auf das nächste Element.
 
 
-**Vektoren**
+#### Vektoren
 ```c
 int array[10];
 array[2] = 42;
 // oder 
 int array[] = {1,1337,42,9};
 ```
+
 **Deklaration von Vektoren**
 
 ```c 
@@ -157,7 +171,7 @@ int* dynamic = (int*) malloc( sizeof(int) * n); // dynamisch, n Elemente
 free(dynamic); // speicher wieder freigeben
 ```
     
-**Typendefinition**
+#### Typendefinition
 
 ```c
 typedef unsigned long uint32_t; // C99: include <stdint.h>
@@ -168,40 +182,45 @@ typedef enum myBoolean_ {
   FALSE, // Wert 0
   TRUE
 } myBoolean_t; 
-``` 
+```
 
-1. **Sie können Variable in C definieren und korrekt ansprechen.**
-    - Dies können Sie für alle eingeführten Datentypen.
+## Sie können Variable in C definieren und korrekt ansprechen.
+
+> Dies können Sie für alle eingeführten Datentypen.
 
 ```c
 float f;
 int a,b,c;
+enum States state = IDLE;
+float (*f)(char*)(char*); // function pointer
 ```
 
 ## Sie kennen die Operatoren in C
 
->Vergleichsoperatoren, logische Operatoren, mathematische Operatoren, Zuweisungsoperatoren, Inkrement- und Dekrementoperatoren als Postfix- und Präfixoperator, bitweise Operatoren, Adressoperator, sizeof, Bedingung, Typkonvertierung.
+### Arithmetische Operatoren
 
-**Arithmetische Operatoren**
 * `+` : Addition, Vorzeichen
 * `-` : Subtraktion, Vorzeichen
 * `*` : Multiplikation, Umwandlungsoperator
 * `/` : Division
 * `%` : Modulo
     
-**Zuweisung**
+### Zuweisung
+
 * `=` : Zuweisung
 * `+=` : Kombinierte Zuweisung
 
 Es exisiteren folgende kombinierte Zuweisungen `+=` , `-=` , `*=` , `/=` ,  `%=` , `&=` , `|=` , `^=` , `<<=` , `>>=`
 
-**Inkrement / Dekrement**
+### Inkrement / Dekrement
+
 * `++a` : Inkrement (Präfix): a = a+1
 * `a++` : Inkrement (Postfix)
 * `--a` : Dekrement (Präfix)
 * `a--` : Dekrement (Postfix)  
     
-**Vergleichsoperatoren**
+### Vergleichsoperatoren
+
 * `==` : Gleichheit
 * `!=` : Ungleichheit
 * `>` : Grösser
@@ -209,12 +228,12 @@ Es exisiteren folgende kombinierte Zuweisungen `+=` , `-=` , `*=` , `/=` ,  `%=`
 * `>=` : Grösser gleich
 * `<=` : Kleiner gleich
 
-**Logische Operatoren** 
+### Logische Operatoren 
 * `!` : Logisches NICHT
 * `||` : Logisches ODER
 * `&&` : Logisches UND
 
-**Bitweise Operatoren**
+### Bitweise Operatoren
 * `&` : Bitweises UND 
 * `|` : Bitweises ODER
 * `^` : Bitweises XOR 
@@ -227,14 +246,14 @@ int x = 0x1F; // 0001 1111
 x = x << 1;   // 0011 1110 
 ```
 
-**Datenzugriff & Speicherberechnung**
+### Datenzugriff & Speicherberechnung
 * `*` : Dereferenzierung
 * `.` : Elementzugriff bei Struktur oder Zeiger
 * `->` : Elementzugriff über Zeiger (`ptr->element` entspricht `(*ptr).element`)
 * `&` : Adresse
 * `sizeof` : Grösse eines Datentyps ermitteln
 
-**Ternärer Operator**
+### Ternärer Operator
 
 ```c
 a ? b : c ;
@@ -252,7 +271,7 @@ max = (a > b) ? a : b;
 
 > Sequenz, Selektion (if und switch) und Iteration (for, while, do while).
 
-**if-else**
+### if - else - else if
 
 ```c
 if (a) {
@@ -264,7 +283,7 @@ if (a) {
 }
 ```
     
-**switch**
+### switch 
 ```c
 switch (a) {
   case 1 : doThis();
@@ -276,7 +295,7 @@ switch (a) {
 }
 ```
      
-**for**
+### for
 ```c
 //for (Initialisierung, Abbruchbedingung, Finalisierung)
 for (int i = 0; i < 10; i++) { 
@@ -284,20 +303,20 @@ for (int i = 0; i < 10; i++) {
 }
 ```
     
-**while**
+### while
 
 ```c
 while(a) {
    //...
 }
 
-**do-while**
+### do-while
 ```c
 do {
    //...
 } while (a);
 
-**goto**
+### goto
 
 ```c
 label:
@@ -315,33 +334,34 @@ TODO
 
 ## Sie können wesentliche Funktionen der C-Standardbibliothek nutzen
 
-    - Sie nutzen die Funktionen zur gepufferten Ein- und Ausgabe.
+> Sie nutzen die Funktionen zur gepufferten Ein- und Ausgabe.
 
-**Ein- und Ausgabe von Zeichen**
+###  Ein- und Ausgabe von Zeichen
+
 * `getchar()` : liefert das nächste Zeichen der Standardeingabe (oder EOF)
 * `putchar(int c)` : schreibt ein Zeichen in die Standarausgabe
 
-**Formatierte Ausgabe**
+### Formatierte Ausgabe
 
 ```c
 printf("String: %s, Number: %d, Float: %3.2f\n", "Hello", 5, 99.9);
 ``` 
 
-**Funktionen mit Zeichenvektoren**
+### Funktionen mit Zeichenvektoren
 
 * `size_t strlen(const char* str)` : Anzahl Zeichen in einer Zeichenkette
 * `char* strcpy(char* dest, const char* src)` : Zeichenkette kopieren
 * `char* strcat(dest, name)` : Zeichenkette verketten
 `
-**Funktionen zur Dateiverwaltung**
+### Funktionen zur Dateiverwaltung
 
 TODO
 
-## Sie kennen die Elemente der modularen Programmierung in C
+## Modulare Programmierung in C
 
->Sie können eine Funktion definieren und deklarieren und kennen die Unterschiede.
->Sie können Funktionen korrekt aufrufen.
->Sie können die Begriffe: Rückgabewert, Parameter (aktuell und formal), Variable (lokal und global) definieren.
+>- Sie können eine Funktion definieren und deklarieren und kennen die Unterschiede.
+>- Sie können Funktionen korrekt aufrufen.
+>- Sie können die Begriffe: Rückgabewert, Parameter (aktuell und formal), Variable (lokal und global) definieren.
 
 TODO
 
@@ -367,7 +387,7 @@ TODO
 
 ## Sie kennen Präprozessordirektiven
 
->\#define, \#if, \#ifndef, \#endif, \#include
+>`#define`, `#if`, `#ifndef`, `#endif`, `#include`
 
 TODO
 
@@ -377,7 +397,7 @@ TODO
 
 ## Sie können dynamische Datenstrukturen implementieren
 
->Sie können die Funktionen malloc und free korrekt verwenden.
+>Sie können die Funktionen `malloc` und `free` korrekt verwenden.
 
 TODO
 
@@ -393,7 +413,7 @@ int main(int argc, char **argv) {
 }
 ```
 
-14. **Sie können ein gegebenes C-Programm lesen und dessen Funktionsweise verstehen.**
+## C-Programme lesen und Funktionsweise verstehen
 
 Material zum Üben:
 * https://www.ioccc.org/years.html
